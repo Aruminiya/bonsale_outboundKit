@@ -17,7 +17,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Close, Add } from '@mui/icons-material'
 import dayjs, { Dayjs } from 'dayjs'
 
-export interface MorningCallFormData {
+export interface OutboundCallFormData {
   extension: string
   date: string
   retryInterval: string
@@ -27,21 +27,21 @@ export interface MorningCallFormData {
   notes: string
 }
 
-interface MorningCallDialogWrapperProps {
+interface OutboundCallDialogWrapperProps {
   mode?: 'add' | 'edit'
-  data?: MorningCallFormData | null // 編輯模式下的初始數據
+  data?: OutboundCallFormData | null // 編輯模式下的初始數據
   trigger?: (onClick: () => void) => ReactNode
-  onSubmit?: (data: MorningCallFormData) => void
+  onSubmit?: (data: OutboundCallFormData) => void
 }
 
-export function MorningCallDialogWrapper({
+export function OutboundCallDialogWrapper({
   mode = 'add',
   data = null,
   trigger,
   onSubmit
-}: MorningCallDialogWrapperProps) {
+}: OutboundCallDialogWrapperProps) {
   const [open, setOpen] = useState(false)
-  const [formData, setFormData] = useState<MorningCallFormData>(data || {
+  const [formData, setFormData] = useState<OutboundCallFormData>(data || {
     extension: '',
     date: dayjs().format('YYYY/MM/DD HH:mm'),
     retryInterval: '5',
@@ -51,7 +51,7 @@ export function MorningCallDialogWrapper({
     notes: '',
   })
 
-  const handleChange = (field: keyof MorningCallFormData, value: string) => {
+  const handleChange = (field: keyof OutboundCallFormData, value: string) => {
     setFormData({ ...formData, [field]: value })
   }
 

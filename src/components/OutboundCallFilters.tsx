@@ -4,21 +4,21 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Clear, Search } from '@mui/icons-material'
 import dayjs, { Dayjs } from 'dayjs'
-import { MorningCallFilters as FilterType } from '@/types/morningCall'
+import { OutboundCallFilters as FilterType } from '@/types/outboundCall'
 
-interface MorningCallFiltersProps {
+interface OutboundCallFiltersProps {
   filters: FilterType
   onFiltersChange: (filters: FilterType) => void
   onClear: () => void
   onSearch: () => void
 }
 
-export function MorningCallFilters({
+export function OutboundCallFilters({
   filters,
   onFiltersChange,
   onClear,
   onSearch,
-}: MorningCallFiltersProps) {
+}: OutboundCallFiltersProps) {
   const handleStartDateChange = (newValue: Dayjs | null) => {
     onFiltersChange({ ...filters, startDate: newValue?.toDate() || null })
   }

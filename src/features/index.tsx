@@ -22,16 +22,16 @@ import {
   Add,
 } from '@mui/icons-material'
 import dayjs from 'dayjs'
-import { MorningCallRecord, MorningCallFilters } from '@/types/morningCall'
-import { MorningCallDialogWrapper, MorningCallFormData } from '../../components/morningCall/MorningCallDialogWrapper'
-import { MorningCallFilters as FilterComponent } from '../../components/morningCall/MorningCallFilters'
+import { OutboundCallRecord, OutboundCallFilters as FilterType } from '@/types/outboundCall'
+import { OutboundCallDialogWrapper, OutboundCallFormData } from '../components/OutboundCallDialogWrapper'
+import { OutboundCallFilters } from '../components/OutboundCallFilters'
 
-export { MorningCallDialogWrapper } from '../../components/morningCall/MorningCallDialogWrapper'
-export type { MorningCallFormData } from '../../components/morningCall/MorningCallDialogWrapper'
+export { OutboundCallDialogWrapper } from '../components/OutboundCallDialogWrapper'
+export type { OutboundCallFormData } from '../components/OutboundCallDialogWrapper'
 
 // 模擬數據 之後改成從 API 獲取
 
-const testData: MorningCallRecord[] = [
+const testData: OutboundCallRecord[] = [
   {
     id: '1',
     audioFile: '預設鈴聲',
@@ -137,14 +137,14 @@ const PAGE_SIZE = 10 // 每頁顯示筆數
 
 const testList = {
   totalPage: Math.ceil(testData.length / PAGE_SIZE),
-  list: testData as MorningCallRecord[],
+  list: testData as OutboundCallRecord[],
 }
 
 export function MorningCallList() {
   // 模擬數據 之後改成從 API 獲取
   const [mockList, setMockList] = useState(testList)
 
-  const [filters, setFilters] = useState<MorningCallFilters>({
+  const [filters, setFilters] = useState<FilterType>({
     startDate: null,
     endDate: null,
     status: '全部',
@@ -220,11 +220,11 @@ export function MorningCallList() {
     setPage(1)
   }
 
-  const handleAddMorningCall = (data: MorningCallFormData) => {
+  const handleAddMorningCall = (data: OutboundCallFormData) => {
     console.log('新增 Morning Call:', data)
     // TODO: 呼叫 API 新增資料
     setMockList((prev) => {
-      const newRecord: MorningCallRecord = {
+      const newRecord: OutboundCallRecord = {
         id: (prev.list.length + 1).toString(),
         audioFile: data.audioFile,
         date: data.date,
@@ -276,7 +276,7 @@ export function MorningCallList() {
           Morning Call 分機紀錄
         </Typography>
         <Box sx={{ ml: 'auto' }}>
-          <MorningCallDialogWrapper
+          <OutboundCallDialogWrapper
             onSubmit={handleAddMorningCall}
             trigger={(onClick) => (
               <Button variant="contained" startIcon={<Add />} onClick={onClick}>
@@ -289,7 +289,7 @@ export function MorningCallList() {
       <Container maxWidth="lg">
         <Box sx={{ py: 3 }}>
           {/* Filters */}
-          <FilterComponent
+          <OutboundCallFilters
             filters={filters}
             onFiltersChange={setFilters}
             onClear={handleClearFilters}
@@ -322,7 +322,7 @@ export function MorningCallList() {
                     </TableCell>
                     <TableCell>{row.notes || '-'}</TableCell>
                     <TableCell align="center">
-                      <MorningCallDialogWrapper
+                      <OutboundCallDialogWrapper
                         onSubmit={handleAddMorningCall}
                         mode='edit'
                         data={{

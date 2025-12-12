@@ -4,7 +4,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     lazy: async () => {
-      const { MorningCallList } = await import('@/features/morningCall')
+      const { MorningCallList } = await import('@/features')
       return { Component: MorningCallList }
     },
   },

@@ -1,22 +1,15 @@
-import { ThemeProvider, CssBaseline } from '@mui/material'
-import { createTheme } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import theme from './theme/theme.ts';
+import custom from "./theme/custom.ts";
+
 import Router from './router'
 
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#1976d2',
-    },
-    secondary: {
-      main: '#dc004e',
-    },
-  },
-})
+const muiTheme = createTheme(theme, custom);
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={muiTheme}>
       <CssBaseline />
       <Router />
     </ThemeProvider>

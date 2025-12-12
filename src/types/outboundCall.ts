@@ -1,4 +1,4 @@
-export interface MorningCallRecord {
+export interface OutboundCallRecord {
   id: string
   audioFile: string // 鈴聲名稱，例如: "預設鈴聲"
   date: string // 日期，例如: "2024/12/05"
@@ -9,7 +9,7 @@ export interface MorningCallRecord {
   retryInterval: string // 重試間隔，單位分鐘
 }
 
-export interface MorningCallFilters {
+export interface OutboundCallFilters {
   startDate: Date | null
   endDate: Date | null
   status: string // '全部' | '排程中' | '已完成' | '失敗'
